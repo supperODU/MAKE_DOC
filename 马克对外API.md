@@ -28,21 +28,19 @@ def generate_sign(params, key):
 
 |  参数名称 | 类型  | 简介  | 备注  |
 | ------------ | ------------ | ------------ | ------------ |
-| app_id  | int 11 |  app_id和密钥请在对接前申请 |   |
-|  event_id | int 11  | 开门事件标识   |   |
-|  device_id | int 11  | 设备ID   |   |
-|  device_code | string 256  | 设备编码   |   |
-|  device_name | string 256  | 设备名称   |   |
-|  door_open_timestamp | int 20  | 开门时间戳 精确到毫秒  |   |
-|  door_close_timestamp | int 20  | 关门时间戳 精确到毫秒  |   |
-|  top_video | string 256  | 主摄像头视频链接地址   |   |
+| app_id  | int 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  unique_id | string 64  | 识别任务唯一标识，不能重复提交   |  必填 |
+|  extra | string 1024 | 长字符串，回调时原样带回 |  必填 |
+|  door_open_timestamp | int 20  | 开门时间戳 精确到毫秒  | 必填  |
+|  door_close_timestamp | int 20  | 关门时间戳 精确到毫秒  | 必填  |
+|  top_video | string 256  | 主摄像头视频链接地址   | 必填  |
 |  ass_video | string 256  | 辅助摄像头视频链接地址   | 可选  |
 |  remark | string 256  | 任务备注   | 可选  |
-|  customer_id | string 64  | 消费者ID   |   |
-|  goods_ids | string 512  | 识别商品ID范围列表，以英文逗号分割   |   |
+|  customer_id | string 64  | 消费者ID   | 可选  |
+|  goods_ids | string 512  | 识别商品ID范围列表，以英文逗号分割   |  必填 |
 |  weight_info | string 512  | 重力信息，包含层以及重量变化   | 可选  |
-|  request_time | int 20  | 请求时间戳 精确到毫秒   |   |
-|  notify_url | string 128  | 识别结果回调地址  |   |
+|  request_time | int 20  | 请求时间戳 精确到毫秒   |  必填 |
+|  notify_url | string 128  | 识别结果回调地址  | 必填  |
 
 demo:
 
