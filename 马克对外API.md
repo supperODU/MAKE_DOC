@@ -1,0 +1,125 @@
+# 马克API
+马克公司对外提供商品识别服务，并开放如下API.该SDK默认编码为UTF8.
+
+## 签名方法说明
+1. 所有参数以ascii从小到大排序；
+2. 用“key1=value1&key2=value2”的方式连接成字符串；
+3. 在结尾拼接密钥，如“key1=value1&key2=value2&key=xxxxxxxxxxx”；
+4. 将字符串进行MD5操作，生成签名，并转为大写。
+
+python 签名demo
+```python
+def generate_sign(params, key):
+    s = ''
+    for k in sorted(params.keys()):
+        s += '%s=%s&' % (k, params[k])
+    s += 'key=%s' % key
+    m = hashlib.md5()
+    m.update(s.encode('utf8'))
+    sign = m.hexdigest().upper()
+    return sign
+```
+
+## 识别API
+简介：用户通过该api下发识别任务
+请求方式：POST JSON
+URL：/make_dc/api/create/task/
+HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型  | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ |
+| app_id  | int 11 |  app_id和密钥请在对接前申请 |   |
+|  event_id | int 11  | 开门事件标识   |   |
+|  device_id | int 11  | 设备ID   |   |
+|  device_code | string 256  | 设备编码   |   |
+|  device_name | string 256  | 设备名称   |   |
+|  door_open_timestamp | int 20  | 开门时间戳 精确到毫秒  |   |
+|  door_close_timestamp | int 20  | 关门时间戳 精确到毫秒  |   |
+|  top_video | string 256  | 主摄像头视频链接地址   |   |
+|  ass_video | string 256  | 辅助摄像头视频链接地址   | 可选  |
+|  remark | string 256  | 任务备注   | 可选  |
+|  customer_id | string 64  | 消费者ID   |   |
+|  goods_ids | string 512  | 识别商品ID范围列表，以英文逗号分割   |   |
+|  weight_info | string 512  | 重力信息，包含层以及重量变化   | 可选  |
+|  request_time | int 20  | 请求时间戳 精确到毫秒   |   |
+|  notify_url | string 128  | 识别结果回调地址  |   |
+
+demo:
+
+```python
+# coding=utf-8
+import requests
+import time
+import hashlib
+import json
+
+_APP_ID = 666666
+# _APP_KEY = 'e8d1af4ebf844bf39481609bb74d868e'
+_APP_KEY = 'e8d1af4ebf844bf39481609bb74d86e1'
+
+_URL = 'http://47.92.245.190/make_dc/api/create/task/'
+
+
+def generate_sign(params, key):
+    s = ''
+    for k in sorted(params.keys()):
+        s += '%s=%s&' % (k, params[k])
+    s += 'key=%s' % key
+    m = hashlib.md5()
+    m.update(s.encode('utf8'))
+    sign = m.hexdigest().upper()
+    return sign
+
+
+def create_task():
+    d = \
+        {
+            'app_id': _APP_ID,
+            'event_id': 31233,
+            'device_id': 31319233,
+            'device_code': '3123qweqw',
+            'device_name': u'哈哈哈',
+            'is_ass_video_valid': 0,
+            'door_open_timestamp': 213,
+            'door_close_timestamp': 312312,
+            'top_video': '4dsdasda',
+            'remark': 'dasdasdas',
+            'customer_id': '312dasdas',
+            'goods_ids': '1,4,9,123,3123,1243',
+            'request_time': int(time.time() * 1000),
+            'notify_url': 'http://123.123.132.312',
+        }
+    d['sign'] = generate_sign(d, _APP_KEY)
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    return requests.post(_URL, data=json.dumps(d, separators=(',', ':')), headers=headers, timeout=5)
+
+if __name__ == '__main__':
+    print(create_task().text)
+
+
+```
+
+正常返回值，此时status为0：
+
+```json
+{
+	"msg": "", 
+	"status": 0,
+	"data": {
+		"task_id": 1678428583713833984
+	}
+}
+```
+异常返回值，status不为0:
+```json
+{
+	"msg": "sign is invaild",
+	"status": 4
+}
+```
+
+## 错误码介绍
+| 错误信息  | 含义  |
+| ------------ | ------------ |
+| sign is invaild  | 签名错误  |
+| ip not in  white_list  | 请求服务器IP不在白名单  |
