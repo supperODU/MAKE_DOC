@@ -21,10 +21,10 @@ def generate_sign(params, key):
 ```
 
 ## 识别API
-简介：用户通过该api下发识别任务
-请求方式：POST JSON
-URL：/make_dc/api/create/task/
-HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+- 简介：用户通过该api下发识别任务
+- 请求方式：POST JSON
+- URL：/make_dc/api/create/task/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
 |  参数名称 | 类型  | 简介  | 备注  |
 | ------------ | ------------ | ------------ | ------------ |
