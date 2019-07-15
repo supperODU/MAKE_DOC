@@ -41,6 +41,8 @@ def generate_sign(params, key):
 |  weight_info | string 512  | 重力信息，包含层以及重量变化   | 可选  |
 |  request_time | int 20  | 请求时间戳 精确到毫秒   |  必填 |
 |  notify_url | string 128  | 识别结果回调地址  | 必填  |
+|  sign | string 128  | 签名  | 必填  |
+
 
 demo:
 
