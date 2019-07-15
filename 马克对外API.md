@@ -54,8 +54,8 @@ import hashlib
 import json
 
 _APP_ID = 666666
-# _APP_KEY = 'e8d1af4ebf844bf39481609bb74d868e'
-_APP_KEY = 'e8d1af4ebf844bf39481609bb74d86e1'
+_APP_KEY = 'e8d1af4ebf844bf39481609bb74d868e'
+# _APP_KEY = 'e8d1af4ebf844bf39481609bb74d86e1'
 
 _URL = 'http://47.92.245.190/make_dc/api/create/task/'
 
@@ -75,11 +75,8 @@ def create_task():
     d = \
         {
             'app_id': _APP_ID,
-            'event_id': 31233,
-            'device_id': 31319233,
-            'device_code': '3123qweqw',
-            'device_name': u'哈哈哈',
-            'is_ass_video_valid': 0,
+            'unique_id': int(time.time() * 1000),
+            'extra': u'哈哈哈',
             'door_open_timestamp': 213,
             'door_close_timestamp': 312312,
             'top_video': '4dsdasda',
@@ -95,6 +92,7 @@ def create_task():
 
 if __name__ == '__main__':
     print(create_task().text)
+
 
 
 ```
