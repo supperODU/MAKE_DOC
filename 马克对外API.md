@@ -116,6 +116,44 @@ if __name__ == '__main__':
 }
 ```
 
+## 回调接口
+- 简介：用户提供该接口，用于接收服务端任务识别结果通知
+- 请求方式：POST JSON
+- URL：对接方提供
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型  | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ |
+| app_id  | int 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  unique_id | string 64  | 识别任务唯一标识，下单时提交 |  必填 |
+|  status | int 11  | 识别结果：0 未识别， 1 识别失败， 2识别成功 |  必填 |
+|  fee | float  | 识别金额(元) |  必填 |
+|  reco_result | string 512  | JSON格式，识别结果 |  必填 |
+|  task_id | int 20  | 识别系统任务ID |  必填 |
+|  extra | string 1024 | 下单时传入，原样带回 |  必填 |
+|  sign | string 64 | 签名，生成方法和下单一致|  必填 |
+
+收到通知后，需返回纯文本**success**，未收到**success**，会持续不定期重复推送，最长持续15天
+
+返回示例
+
+```json
+{
+	"msg": "",
+	"status": 0,
+	"data": {
+		"status": 0,
+		"fee": null,
+		"reco_result": null,
+		"task_id": 1678544481511538688,
+		"extra": "\u54c8\u54c8\u54c8",
+		"app_id": 666666,
+		"sign": "0F4D057A06B5B5E4E3FB9EB7490F4D7B",
+		"unique_id": "1563266367668"
+	}
+}
+```
+
 ## 错误码介绍
 | 错误信息  | 含义  |
 | ------------ | ------------ |
