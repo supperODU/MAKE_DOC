@@ -38,7 +38,7 @@ def generate_sign(params, key):
 |  ass_video | string 256  | 辅助摄像头视频链接地址   | 可选  |
 |  remark | string 256  | 任务备注   | 可选  |
 |  customer_id | string 64  | 消费者ID   | 可选  |
-|  goods_ids | string 512  | 识别商品ID范围列表，以英文逗号分割   |  必填 |
+|  goods_ids | string 512  | 格式见DEMO MAP，其中KEY为层信息， VALUE为商品列表， KEY为-1代表商品可以出现在任意层 |  必填 |
 |  weight_info | string 512  | 重力信息，包含层以及重量变化   | 可选  |
 |  request_time | int 20  | 请求时间戳 精确到毫秒   |  必填 |
 |  notify_url | string 128  | 识别结果回调地址  | 必填  保存返回订单号 ****| 
@@ -316,6 +316,7 @@ def create_task():
             'customer_id': '312dasdas',
 
             # -1层商品可能出现在任意层
+            # KEY 代表层， VALUE代表该层可能出现的商品
             'goods_ids': '''{
                 -1: [1, 4, 7, 9, 11], 
                 1: [1, 4, 7, 9, 11],
