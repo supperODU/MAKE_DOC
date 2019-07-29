@@ -1,9 +1,6 @@
 # 马克API
 马克公司对外提供商品识别服务，并开放如下API.该SDK默认编码为UTF8.
 
-## 目录
-[签名方法说明](签名方法说明)
-
 ## 签名方法说明
 1. 所有参数以ascii从小到大排序；
 2. 用“key1=value1&key2=value2”的方式连接成字符串；
@@ -104,7 +101,7 @@ def generate_sign(params, key):
 ```
 
 ## 查询接口
-- 简介：用户提供该接口，用于接收服务端任务识别结果通知
+- 简介：主动查询识别任务状态
 - 请求方式：GET
 - URL：/recognition/api/query/task/
 - URL：对接方提供
@@ -139,6 +136,136 @@ def generate_sign(params, key):
 	}
 }
 ```
+
+
+## 云库商品查询接口
+- 简介：主动查询云库商品
+- 请求方式：GET
+- URL：/recognition/api/query/goods/
+- URL：对接方提供
+
+|  参数名称 | 类型  | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ |
+| companyId  | int 11 |  同app_id 请在对接前申请 | 必填  |
+|  nonceStr | string 64  | 随机字符串 |  必填 |
+|  requestSerial | int 20  | 请求ID  |  必填 |
+|  timeStamp | int 20  | 请求时间戳 |  必填 |
+|  sign | string 64 | 签名，生成方法和下单一致|  必填 |
+|  goods_name | string 64 | 商品名称|  选填 |
+|  pinyin | string 64 | 拼音|  选填 |
+|  barcode | string 255 | 条码|  选填 |
+|  specifications | string 255 | 规格|  选填 |
+
+请求示例：
+http://47.92.245.190/recognition/api/query/goods/?companyId=666666&goods_name=%E5%93%88%E5%93%88%E5%93%88&requestSerial=request_time&nonceStr=dasdasdas&timeStamp=1564395348957&sign=E47C05D36F088B1CBAE491157D6E6556
+
+返回示例
+
+```json
+{
+	"msg": "",
+	"status": 0,
+	"data": {
+		"total_count": 4,
+		"list": [{
+			"is_show_to_consumer": null,
+			"brand_name": null,
+			"id": 17115,
+			"type": 2,
+			"status": 0,
+			"description": null,
+			"goods_name": "哈哈哈",
+			"specifications": null,
+			"price": 12.0,
+			"barcode": null,
+			"avg_weight": 0,
+			"main_image": "http://thinkboxs.oss-cn-shanghai.aliyuncs.com/goods/1562057373030_72554",
+			"created_at": "2019-07-18 14:25:06"
+		}, {
+			"is_show_to_consumer": null,
+			"brand_name": null,
+			"id": 17116,
+			"type": 2,
+			"status": 2,
+			"description": null,
+			"goods_name": "哈哈哈",
+			"specifications": "100g",
+			"price": 12.0,
+			"barcode": null,
+			"avg_weight": 2,
+			"main_image": "https://hibox.oss-cn-shanghai.aliyuncs.com/goods/tdrsslltgm.jpg",
+			"created_at": "2019-07-18 19:01:48"
+		}, {
+			"is_show_to_consumer": null,
+			"brand_name": null,
+			"id": 17117,
+			"type": 2,
+			"status": 2,
+			"description": null,
+			"goods_name": "哈哈哈",
+			"specifications": "100g",
+			"price": 12.0,
+			"barcode": null,
+			"avg_weight": 2,
+			"main_image": "https://hibox.oss-cn-shanghai.aliyuncs.com/goods/tdrsslltgm.jpg",
+			"created_at": "2019-07-19 20:22:52"
+		}, {
+			"is_show_to_consumer": null,
+			"brand_name": null,
+			"id": 110005,
+			"type": 2,
+			"status": 2,
+			"description": null,
+			"goods_name": "哈哈哈",
+			"specifications": "100g",
+			"price": 12.0,
+			"barcode": null,
+			"avg_weight": 2,
+			"main_image": "http://make-goods.oss-cn-hangzhou.aliyuncs.com/MKG1563791267802.jpg",
+			"created_at": "2019-07-22 18:27:47"
+		}],
+		"page": 1,
+		"size": 4
+	}
+}
+```
+
+## 云库商品创建接口
+- 请求方式：POST
+- URL：/recognition/api/create/goods/
+- URL：对接方提供
+
+|  参数名称 | 类型  | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ |
+| companyId  | int 11 |  同app_id 请在对接前申请 | 必填  |
+|  recognize_type | int 11  | 识别类型 0：未知，1RFID，2大图少样本，3小图大样本 |  必填 |
+|  goods_name | string 64  | 商品名称  |  必填 |
+|  price | FLOAT   | 商品价格 |  必填 |
+|  sign | string 64 | 签名，生成方法和下单一致|  必填 |
+|  main_image | string 256 | 主图地址|  选填 |
+|  images | string 2048 | 附图地址列表，用英文逗号隔开|  选填 |
+|  pinyin | string 64 | 拼音|  选填 |
+|  barcode | string 255 | 条码|  选填 |
+|  specifications | string 255 | 规格|  选填 |
+|  length | int 11 | 长|  选填 |
+|  width | int 11 | 宽|  选填 |
+|  height | int 11 | 高|  选填 |
+|  avg_weight | int 11 | 平均重量|  选填 |
+|  weight_error | int 11 | 重量误差|  选填 |
+|  min_weight | int 11 | 最小重量|  选填 |
+|  max_weight | int 11 | 最大重量|  选填 |
+
+正确返回示例：
+```json
+{
+	"msg": "",
+	"status": 0,
+	"data": {
+		"id": 110116 # 创建成功后，云库商品ID
+	}
+}
+```
+
 
 ## 错误码介绍
 | 错误信息  | 含义  |
@@ -222,5 +349,77 @@ def query_task_status():
 
 if __name__ == '__main__':
     print(query_task_status().text)
+
+```
+
+## 云库商品查询创建DEMO
+```python
+# coding=utf-8
+import requests
+import time
+import hashlib
+import json
+
+_APP_ID = 666666
+_APP_KEY = 'e8d1af4ebf844bf39481609bb74d868e'
+
+_URL = 'http://47.92.245.190/recognition/api/create/goods/'
+_QUERY_URL = 'http://47.92.245.190/recognition/api/query/goods/'
+
+
+def generate_sign(params, key):
+    s = ''
+    for k in sorted(params.keys()):
+        s += '%s=%s&' % (k, params[k])
+    s += 'key=%s' % key
+    print(s)
+    m = hashlib.md5()
+    m.update(s.encode('utf8'))
+    sign = m.hexdigest().upper()
+    return sign
+
+
+def create_goods():
+    request_time = int(time.time() * 1000)
+    d = \
+        {
+            'companyId': _APP_ID,
+            'recognize_type': 2,
+            'goods_name': u'哈哈哈1',
+            'price': 12,
+            'main_image': 'http://rm-bg-image.oss-cn-hangzhou.aliyuncs.com/rm_bg_img_1563591282307.jpg',
+            'pinyin': '4dsdasda',
+            'nonceStr': 'dasdasdas',
+            'specifications': '100g',
+            'type': 2,
+            'avg_weight': 2,
+            'requestSerial': request_time,
+            'timeStamp': request_time,
+        }
+    d['sign'] = generate_sign(d, _APP_KEY)
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    return requests.post(_URL, data=json.dumps(d, separators=(',', ':')), headers=headers, timeout=5)
+
+
+def query_goods():
+    request_time = int(time.time() * 1000)
+    params = \
+        {
+            'companyId': _APP_ID,
+            'goods_name': u'哈哈哈',  # 可选
+            # 'pinyin': '4dsdasd', # 可选
+            'requestSerial': 'request_time',
+            'nonceStr': 'dasdasdas',
+            'timeStamp': request_time,
+        }
+    params['sign'] = generate_sign(params, _APP_KEY)
+    return requests.get(_QUERY_URL, params=params, timeout=5)
+
+
+if __name__ == '__main__':
+    response = create_goods()
+    print(response.text)
+    print(response.url)
+    print(response.status_code)
 
 ```
