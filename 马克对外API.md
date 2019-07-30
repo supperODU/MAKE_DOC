@@ -64,7 +64,7 @@ def generate_sign(params, key):
 ```
 
 ## 回调接口
-- 简介：用户提供该接口，用于接收服务端任务识别结果通知
+- 简介：对接方提供该接口，用于接收服务端任务识别结果通知
 - 请求方式：POST JSON
 - URL：对接方提供
 - HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
@@ -95,6 +95,33 @@ def generate_sign(params, key):
 	"app_id": 666666,
 	"sign": "F9FAAA2592DADD29468A3E99F0F7A813",
 	"unique_id": "1563949371285"
+}
+```
+
+## 获取辅助视频
+- 简介：对接方提供该接口，当创建识别任务没有传入辅助视频，而该任务需要时调用。
+- 请求方式：POST JSON
+- URL：对接方提供
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| app_id  | int | 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  unique_id | string|  64  | 创建任务时传入|  必填 |
+|  device_id | string |64  | 设备ID  |  必填 |
+|  request_time | int | 20  | 请求时间戳 精确到毫秒   |  必填 |
+|  door_open_timestamp | int |  20  | 开门时间戳 精确到毫秒  | 必填  |
+|  door_close_timestamp | int|  20  | 关门时间戳 精确到毫秒  | 必填  |
+|  sign | string | 64 | 签名，生成方法和下单一致, 必须校验|  必填 |
+
+
+返回示例
+
+```json
+{
+	"status": 1, # 0 正在上传； 1 上传成功；2 上传失败
+	"msg": "xxxxx",
+	"ass_video": "http://...."
 }
 ```
 
