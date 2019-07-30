@@ -281,7 +281,7 @@ import hashlib
 import json
 
 _APP_ID = 666666
-_APP_KEY = 'e8d1af4ebf844bf39481609bb74d868e'
+_APP_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 _URL = 'http://47.92.245.190/recognition/api/create/task/'
 _QUERY_URL = 'http://47.92.245.190/recognition/api/query/task/'
@@ -371,7 +371,7 @@ import hashlib
 import json
 
 _APP_ID = 666666
-_APP_KEY = 'e8d1af4ebf844bf39481609bb74d868e'
+_APP_KEY = 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx'
 
 _URL = 'http://47.92.245.190/recognition/api/create/goods/'
 _QUERY_URL = 'http://47.92.245.190/recognition/api/query/goods/'
