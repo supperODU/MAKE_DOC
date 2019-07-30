@@ -26,23 +26,23 @@ def generate_sign(params, key):
 - URL：/recognition/api/create/task/
 - HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-|  参数名称 | 类型  | 简介  | 备注  |
-| ------------ | ------------ | ------------ | ------------ |
-| app_id  | int 11 |  app_id和密钥请在对接前申请 | 必填  |
-|  unique_id | string 64  | 识别任务唯一标识，不能重复提交   |  必填 |
-|  device_id | string 64  | 设备ID  |  必填 |
-|  extra | string 1024 | 长字符串，回调时原样带回 |  必填 |
-|  door_open_timestamp | int 20  | 开门时间戳 精确到毫秒  | 必填  |
-|  door_close_timestamp | int 20  | 关门时间戳 精确到毫秒  | 必填  |
-|  top_video | string 256  | 主摄像头视频链接地址   | 必填  |
-|  ass_video | string 256  | 辅助摄像头视频链接地址   | 可选  |
-|  remark | string 256  | 任务备注   | 可选  |
-|  customer_id | string 64  | 消费者ID   | 可选  |
-|  goods_ids | string 512  | 格式见DEMO MAP，其中KEY为层信息， VALUE为商品列表， KEY为-1代表商品可以出现在任意层 |  必填 |
-|  weight_info | string 512  | 重力信息，包含层以及重量变化   | 可选  |
-|  request_time | int 20  | 请求时间戳 精确到毫秒   |  必填 |
-|  notify_url | string 128  | 识别结果回调地址  | 必填  保存返回订单号 ****| 
-|  sign | string 128  | 签名  | 必填  |
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| app_id  | int | 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  unique_id | string |64  | 识别任务唯一标识，不能重复提交   |  必填 |
+|  device_id | string |64  | 设备ID  |  必填 |
+|  extra | string |1024 | 长字符串，回调时原样带回 |  必填 |
+|  door_open_timestamp | int |  20  | 开门时间戳 精确到毫秒  | 必填  |
+|  door_close_timestamp | int|  20  | 关门时间戳 精确到毫秒  | 必填  |
+|  top_video | string | 256  | 主摄像头视频链接地址   | 必填  |
+|  ass_video | string | 256  | 辅助摄像头视频链接地址   | 可选  |
+|  remark | string | 256  | 任务备注   | 可选  |
+|  customer_id | string | 64  | 消费者ID   | 可选  |
+|  goods_ids | string | 512  | 格式见DEMO MAP，其中KEY为层信息， VALUE为商品列表， KEY为-1代表商品可以出现在任意层 |  必填 |
+|  weight_info | string | 512  | 重力信息，包含层以及重量变化   | 可选  |
+|  request_time | int | 20  | 请求时间戳 精确到毫秒   |  必填 |
+|  notify_url | string | 128  | 识别结果回调地址  | 必填 | 
+|  sign | string | 128  | 签名  | 必填  |
 
 正常返回值，此时status为0：
 
@@ -69,16 +69,15 @@ def generate_sign(params, key):
 - URL：对接方提供
 - HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-|  参数名称 | 类型  | 简介  | 备注  |
-| ------------ | ------------ | ------------ | ------------ |
-| app_id  | int 11 |  app_id和密钥请在对接前申请 | 必填  |
-|  unique_id | string 64  | 识别任务唯一标识，下单时提交 |  必填 |
-|  status | int 11  | 识别结果：0 未识别， 1 识别失败， 2识别成功 |  必填 |
-|  fee | float  | 识别金额(元) |  必填 |
-|  reco_result | string 512  | JSON格式，识别结果 |  必填 |
-|  task_id | int 20  | 识别系统任务ID |  必填 |
-|  extra | string 1024 | 下单时传入，原样带回 |  必填 |
-|  sign | string 64 | 签名，生成方法和下单一致, 必须校验|  必填 |
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| app_id  | int | 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  unique_id | string|  64  | 识别任务唯一标识，下单时提交 |  必填 |
+|  status | int | 11  | 识别结果：0 未识别， 1 识别失败， 2识别成功 |  必填 |
+|  reco_result | string |  512  | JSON格式，识别结果 |  必填 |
+|  task_id | int | 20  | 识别系统任务ID |  必填 |
+|  extra | string | 1024 | 下单时传入，原样带回 |  必填 |
+|  sign | string | 64 | 签名，生成方法和下单一致, 必须校验|  必填 |
 
 收到通知后，需返回纯文本**success**，未收到**success**，会持续不定期重复推送，最长持续15天
 
@@ -87,7 +86,6 @@ def generate_sign(params, key):
 ```json
 {
 	"status": 1,
-	"fee": 0.1,
 	"reco_result": {
 		"17": 4,
 		"16": 3
@@ -102,16 +100,16 @@ def generate_sign(params, key):
 
 ## 查询接口
 - 简介：主动查询识别任务状态
-- 请求方式：GET
+- 请求方式：同时支持GET/POST 为POST时使用下面的header
 - URL：/recognition/api/query/task/
-- URL：对接方提供
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-|  参数名称 | 类型  | 简介  | 备注  |
-| ------------ | ------------ | ------------ | ------------ |
-| app_id  | int 11 |  app_id和密钥请在对接前申请 | 必填  |
-|  unique_id | string 64  | 识别任务唯一标识，下单时提交 |  必填 |
-|  request_time | int 20  | 请求时间戳 精确到毫秒   |  必填 |
-|  sign | string 64 | 签名，生成方法和下单一致|  必填 |
+|  参数名称 | 类型 | 长度限制 | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| app_id  | int | 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  unique_id | string | 64  | 识别任务唯一标识，下单时提交 |  必填 |
+|  request_time | int | 20  | 请求时间戳 精确到毫秒   |  必填 |
+|  sign | string | 64 | 签名，生成方法和下单一致|  必填 |
 
 返回示例
 
@@ -122,7 +120,6 @@ def generate_sign(params, key):
 	"data": {
 		"task_info": {
 			"status": 1,
-			"fee": 0.1,
 			"result": {
 				"17": 4,
 				"16": 3
@@ -140,21 +137,21 @@ def generate_sign(params, key):
 
 ## 云库商品查询接口
 - 简介：主动查询云库商品
-- 请求方式：GET
+- 请求方式：同时支持GET/POST 为POST时使用下面的header
 - URL：/recognition/api/query/goods/
-- URL：对接方提供
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
-|  参数名称 | 类型  | 简介  | 备注  |
-| ------------ | ------------ | ------------ | ------------ |
-| companyId  | int 11 |  同app_id 请在对接前申请 | 必填  |
-|  nonceStr | string 64  | 随机字符串 |  必填 |
-|  requestSerial | int 20  | 请求ID  |  必填 |
-|  timeStamp | int 20  | 请求时间戳 |  必填 |
-|  sign | string 64 | 签名，生成方法和下单一致|  必填 |
-|  goods_name | string 64 | 商品名称|  选填 |
-|  pinyin | string 64 | 拼音|  选填 |
-|  barcode | string 255 | 条码|  选填 |
-|  specifications | string 255 | 规格|  选填 |
+|  参数名称 | 类型  | 长度限制 | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| companyId  | int | 11 |  同app_id 请在对接前申请 | 必填  |
+|  nonceStr | string | 64  | 随机字符串 |  必填 |
+|  requestSerial | int | 20  | 请求ID  |  必填 |
+|  timeStamp | int | 20  | 请求时间戳 |  必填 |
+|  sign | string | 64 | 签名，生成方法和下单一致|  必填 |
+|  goods_name | string | 64 | 商品名称|  选填 |
+|  pinyin | string | 64 | 拼音|  选填 |
+|  barcode | string | 255 | 条码|  选填 |
+|  specifications | string | 255 | 规格|  选填 |
 
 请求示例：
 http://47.92.245.190/recognition/api/query/goods/?companyId=666666&goods_name=%E5%93%88%E5%93%88%E5%93%88&requestSerial=request_time&nonceStr=dasdasdas&timeStamp=1564395348957&sign=E47C05D36F088B1CBAE491157D6E6556
@@ -235,25 +232,25 @@ http://47.92.245.190/recognition/api/query/goods/?companyId=666666&goods_name=%E
 - URL：/recognition/api/create/goods/
 - URL：对接方提供
 
-|  参数名称 | 类型  | 简介  | 备注  |
-| ------------ | ------------ | ------------ | ------------ |
-| companyId  | int 11 |  同app_id 请在对接前申请 | 必填  |
-|  recognize_type | int 11  | 识别类型 0：未知，1RFID，2大图少样本，3小图大样本 |  必填 |
-|  goods_name | string 64  | 商品名称  |  必填 |
-|  price | FLOAT   | 商品价格 |  必填 |
-|  sign | string 64 | 签名，生成方法和下单一致|  必填 |
-|  main_image | string 256 | 主图地址|  选填 |
-|  images | string 2048 | 附图地址列表，用英文逗号隔开|  选填 |
-|  pinyin | string 64 | 拼音|  选填 |
-|  barcode | string 255 | 条码|  选填 |
-|  specifications | string 255 | 规格|  选填 |
-|  length | int 11 | 长|  选填 |
-|  width | int 11 | 宽|  选填 |
-|  height | int 11 | 高|  选填 |
-|  avg_weight | int 11 | 平均重量|  选填 |
-|  weight_error | int 11 | 重量误差|  选填 |
-|  min_weight | int 11 | 最小重量|  选填 |
-|  max_weight | int 11 | 最大重量|  选填 |
+|  参数名称 | 类型  | 长度限制 | 简介  | 备注  |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
+| companyId  | int | 11 |  同app_id 请在对接前申请 | 必填  |
+|  recognize_type | int | 11  | 识别类型 0：未知，1RFID，2大图少样本，3小图大样本 |  必填 |
+|  goods_name | string | 64  | 商品名称  |  必填 |
+|  price | FLOAT |   | 商品价格 |  必填 |
+|  sign | string | 64 | 签名，生成方法和下单一致|  必填 |
+|  main_image | string | 256 | 主图地址|  选填 |
+|  images | string | 2048 | 附图地址列表，用英文逗号隔开|  选填 |
+|  pinyin | string | 64 | 拼音|  选填 |
+|  barcode | string | 255 | 条码|  选填 |
+|  specifications | string | 255 | 规格|  选填 |
+|  length | int | 11 | 长|  选填 |
+|  width | int | 11 | 宽|  选填 |
+|  height | int | 11 | 高|  选填 |
+|  avg_weight | int | 11 | 平均重量|  选填 |
+|  weight_error | int | 11 | 重量误差|  选填 |
+|  min_weight | int | 11 | 最小重量|  选填 |
+|  max_weight | int | 11 | 最大重量|  选填 |
 
 正确返回示例：
 ```json
@@ -316,7 +313,6 @@ def create_task():
             'customer_id': '312dasdas',
 
             # -1层商品可能出现在任意层
-            # KEY 代表层， VALUE代表该层可能出现的商品
             'goods_ids': '''{
                 -1: [1, 4, 7, 9, 11], 
                 1: [1, 4, 7, 9, 11],
@@ -348,8 +344,21 @@ def query_task_status():
     return requests.get(_QUERY_URL, params=d, timeout=5)
 
 
+def post_query_task_status():
+    request_time = int(time.time() * 1000)
+    d = \
+        {
+            'app_id': _APP_ID,
+            'unique_id': 1563949371285,
+            'request_time': request_time,
+        }
+    d['sign'] = generate_sign(d, _APP_KEY)
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    return requests.post(_QUERY_URL, data=json.dumps(d), headers=headers, timeout=5)
+
+
 if __name__ == '__main__':
-    print(query_task_status().text)
+    print(post_query_task_status().text)
 
 ```
 
@@ -417,8 +426,24 @@ def query_goods():
     return requests.get(_QUERY_URL, params=params, timeout=5)
 
 
+def post_query_goods():
+    request_time = int(time.time() * 1000)
+    params = \
+        {
+            'companyId': _APP_ID,
+            'goods_name': u'哈哈哈',  # 可选
+            # 'pinyin': '4dsdasd', # 可选
+            'requestSerial': 'request_time',
+            'nonceStr': 'dasdasdas',
+            'timeStamp': request_time,
+        }
+    params['sign'] = generate_sign(params, _APP_KEY)
+    headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
+    return requests.post(_QUERY_URL, data=json.dumps(params), headers=headers, timeout=5)
+
+
 if __name__ == '__main__':
-    response = create_goods()
+    response = post_query_goods()
     print(response.text)
     print(response.url)
     print(response.status_code)
