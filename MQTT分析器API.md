@@ -25,13 +25,13 @@
 	"data": {
 		"data": {
 			"topic": "Analyst",
-			"password": "VqXJuQbNd7ehw14HZvwwrgL81TU=",
-			"client_id": "GID_Analyst@@@analyst_3",
+			"password": "VqXJXXXXXXXXXXXXXXX",
+			"client_id": "GID_XXXXXXXXXXXX",
 			"keepalive": 60,
-			"server_client_id": "GID_Analyst@@@monitor",
-			"user_name": "Signature|LTAIAcXx0yUAXd9q|post-cn-4590nfec207",
+			"server_client_id": "GID_AXXXXXXXXXXXXXX",
+			"user_name": "Signature|LTAIAcXXXXXXXXXXX",
 			"port": 1883,
-			"brokerUrl": "post-cn-4590nfec207.mqtt.aliyuncs.com"
+			"brokerUrl": "post-cnXXXXXXXXX"
 		}
 	}
 }
