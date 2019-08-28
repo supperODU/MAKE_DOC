@@ -29,8 +29,10 @@ def generate_sign(params, key):
 |  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
 | ------------ | ------------ |------------ | ------------ | ------------ |
 | app_id  | int | 11 |  app_id和密钥请在对接前申请 | 必填  |
+|  event_id | string |64  | 事件ID  |  选填 |
 |  unique_id | string |64  | 识别任务唯一标识，不能重复提交   |  必填 |
 |  device_id | string |64  | 设备ID  |  必填 |
+|  device_code | string |64  | 设备编码  |  必填 |
 |  extra | string |1024 | 长字符串，回调时原样带回 |  必填 |
 |  door_open_timestamp | int |  20  | 开门时间戳 精确到毫秒  | 必填  |
 |  door_close_timestamp | int|  20  | 关门时间戳 精确到毫秒  | 必填  |
@@ -38,7 +40,7 @@ def generate_sign(params, key):
 |  ass_video | string | 256  | 辅助摄像头视频链接地址   | 可选  |
 |  remark | string | 256  | 任务备注   | 可选  |
 |  customer_id | string | 64  | 消费者ID   | 可选  |
-|  goods_ids | string | 512  | 格式见DEMO MAP，其中KEY为层信息， VALUE为商品列表， KEY为-1代表商品可以出现在任意层 |  必填 |
+|  goods_ids | string | 4000  | 格式见商品信息json, 一层最多不超过九种商品|  必填 |
 |  weight_info | string | 512  | 重力信息，包含层以及重量变化   | 可选  |
 |  request_time | int | 20  | 请求时间戳 精确到毫秒   |  必填 |
 |  notify_url | string | 128  | 识别结果回调地址  | 必填 | 
@@ -61,6 +63,37 @@ def generate_sign(params, key):
 	"msg": "sign is invaild",
 	"status": 4
 }
+```
+
+商品信息:
+```json
+[{
+	"colIndex": 3,  # 货道编号 
+	"floorIndex": 1,  # 层
+	"goodsId": 110520  # 商品ID
+}, {
+	"colIndex": 1,
+	"floorIndex": 2,
+	"goodsId": 10910
+}, {
+	"colIndex": 5,
+	"floorIndex": 2,
+	"goodsId": 110498
+}, {
+	"colIndex": 1,
+	"floorIndex": 4,
+	"goodsId": 10936
+}]
+```
+
+重力信息:
+```json
+[{
+	"endtimestamp": 1566955354439,  # 重力变化结束毫秒时间戳
+	"floor": 1,    # 重力变化层
+	"starttimestamp": 1566955354020, # 重力变化开始毫秒时间戳
+	"weight": -344   # 重力变化 克
+}]
 ```
 
 ## 回调接口
@@ -328,32 +361,26 @@ def generate_sign(params, key):
 def create_task():
     request_time = int(time.time() * 1000)
     d = \
-        {
-            'app_id': _APP_ID,
-            'unique_id': request_time,
-            'device_id': 98765,
-            'extra': u'哈哈哈',
-            'door_open_timestamp': 1558583537598,
-            'door_close_timestamp': 1558583538419,
-            'top_video': '4dsdasda',
-            'ass_video': 'assssssss',
-            'customer_id': '312dasdas',
-
-            # -1层商品可能出现在任意层
-            'goods_ids': '''{
-                -1: [1, 4, 7, 9, 11], 
-                1: [1, 4, 7, 9, 11],
-                2: [20, 26, 28, 29],
-                3: [30, 36, 48, 59],
-                4: [40, 46, 48, 59],
-                5: [50, 56, 58, 59],
-            }''',
-            'weight_info': '''[
-                {"floor": 4, "weight": -536, "startTimeStamp": 1558583537598, "endTimeStamp": 1558583538419},
-                {"floor": 2, "weight": -81, "startTimeStamp": 1558583541091, "endTimeStamp": 1558583545205}]''',
-            'request_time': request_time,
-            'notify_url': 'http://123.123.132.312',
-        }
+    {
+        "app_id": "666666",
+        "ass_video": "",
+        "customer_id": "450560",
+        "device_code": "12695",
+        "device_id": "16840",
+        "door_close_timestamp": "1566955357484",
+        "door_event_id": "12184431",
+        "door_open_timestamp": "1566955351846",
+        "event_id": "10098462",
+        "extra": "",
+        "goods_info": "[{\"colIndex\":3,\"floorIndex\":1,\"goodsId\":110520},{\"colIndex\":1,\"floorIndex\":2,\"goodsId\":10910},{\"colIndex\":5,\"floorIndex\":2,\"goodsId\":110498},{\"colIndex\":1,\"floorIndex\":4,\"goodsId\":10936},{\"floorIndex\":-1,\"goodsId\":10910},{\"floorIndex\":-1,\"goodsId\":10936},{\"floorIndex\":-1,\"goodsId\":110498},{\"floorIndex\":-1,\"goodsId\":110520}]",
+        "has_ass_video": "1",
+        "notify_url": "https://v2.lufff.com/orders/insert",
+        "request_time": "1566955366247",
+        "sign": "507EFF049E91FE274F77A9B6A9BF951A",
+        "top_video": "https://xiaomaibox.oss-cn-shanghai.aliyuncs.com/box/video/10098462_top_1566955351846.mp4",
+        "unique_id": "12184431",
+        "weight_info": "[{\"endtimestamp\":1566955354439,\"floor\":1,\"starttimestamp\":1566955354020,\"weight\":-344}]"
+    }
     d['sign'] = generate_sign(d, _APP_KEY)
     headers = {'Content-type': 'application/json', 'Accept': 'text/plain'}
     return requests.post(_URL, data=json.dumps(d, separators=(',', ':')), headers=headers, timeout=5)
