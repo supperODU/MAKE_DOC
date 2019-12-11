@@ -3,9 +3,9 @@
 
 
 ## 充值API
-- 简介：用户通过该api获取充值链接
+- 简介：用户通过该api获取充值链接, app是有手机浏览器打开该链接，可以唤起支付宝支付。
 - 请求方式：GET
-- URL：http://47.103.115.71:8899/make_crm/api/create_mch_recharge/?mch_id=9&amount=0.01
+- URL：http://crm.xiaomai24h.com:8899/make_crm/api/create_mch_recharge/?mch_id=9&amount=0.01
 
 |  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
 | ------------ | ------------ |------------ | ------------ | ------------ |
