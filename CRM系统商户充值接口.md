@@ -24,3 +24,97 @@
 }
 ```
 
+
+## 查询商户账单详情
+- 简介：查询商户账单详情
+- 请求方式：GET
+- URL：http://crm.xiaomai24h.com:8899//make_crm/api/get_mch_detail_bill/?mch_id=9
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| mch_id  | int | 11 |  商户ID | 必填  |
+
+正常返回值，此时status为0：
+
+返回参数介绍
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| total_left_money  | float |  |  剩余应收款 | 必填  |
+| balance  | float |  |  商户余额 | 必填  |
+| this_month_left_money  | float |  |  本月剩余应收款 | 必填  |
+|   |  |  |   |   |
+| receivable  | float |  |  月应收款 | 必填  |
+| recv_money  | float |  |  月已收款| 必填  |
+| total_amount  | float |  |  月销售额| 必填  |
+| order_count  | float |  |  月订单数| 必填  |
+| bill_month  | float |  |  时间| 必填  |
+| left_money  | float |  |  月剩余应收款| 必填  |
+
+
+```json
+{
+	"msg": "",
+	"status": 0,
+	"data": {
+		"total_left_money": 0.0,
+		"balance": 0.11,
+		"this_month_left_money": -0.11,
+		"detail_bill": [{
+			"receivable": "1236.77",
+			"pay_remark": "暂无",
+			"total_amount": 20912.81,
+			"order_count": 3653.0,
+			"sales_name": "张楠",
+			"bill_month": "2019-08-01",
+			"group_index": "2019-08_9",
+			"left_money": "0.00",
+			"mch_name": "张楠运营团队",
+			"recv_money": "1236.77"
+		}, {
+			"receivable": "1823.25",
+			"pay_remark": "暂无",
+			"total_amount": 30488.68,
+			"order_count": 4548.0,
+			"sales_name": "张楠",
+			"bill_month": "2019-09-01",
+			"group_index": "2019-09_9",
+			"left_money": "0.00",
+			"mch_name": "张楠运营团队",
+			"recv_money": "1823.25"
+		}, {
+			"receivable": "1838.45",
+			"pay_remark": "暂无",
+			"total_amount": 30701.88,
+			"order_count": 4183.0,
+			"sales_name": "张楠",
+			"bill_month": "2019-10-01",
+			"group_index": "2019-10_9",
+			"left_money": "0.00",
+			"mch_name": "张楠运营团队",
+			"recv_money": "1838.45"
+		}, {
+			"receivable": "1722.94",
+			"pay_remark": "暂无",
+			"total_amount": 28715.7,
+			"order_count": 4377.0,
+			"sales_name": "张楠",
+			"bill_month": "2019-11-01",
+			"group_index": "2019-11_9",
+			"left_money": "0.00",
+			"mch_name": "张楠运营团队",
+			"recv_money": "1722.94"
+		}, {
+			"receivable": "468.24",
+			"pay_remark": "暂无",
+			"total_amount": 7804.25,
+			"order_count": 1339.0,
+			"sales_name": "张楠",
+			"bill_month": "2019-12-01",
+			"group_index": "2019-12_9",
+			"left_money": "-0.11",
+			"mch_name": "张楠运营团队",
+			"recv_money": "468.35"
+		}]
+	}
+}
+```
