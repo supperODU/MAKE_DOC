@@ -49,6 +49,7 @@
 | total_amount  | float |  |  月销售额| 必填  |
 | order_count  | float |  |  月订单数| 必填  |
 | bill_month  | float |  |  时间| 必填  |
+| bill_time_stamp  | float |  |  账单毫秒时间戳| 必填  |
 | left_money  | float |  |  月剩余应收款| 必填  |
 
 
@@ -57,65 +58,70 @@
 	"msg": "",
 	"status": 0,
 	"data": {
-		"total_left_money": 0.0,
-		"balance": 0.11,
 		"this_month_left_money": -0.11,
 		"detail_bill": [{
-			"receivable": "1236.77",
 			"pay_remark": "暂无",
-			"total_amount": 20912.81,
 			"order_count": 3653.0,
+			"recv_money": "1236.77",
+			"receivable": "1236.77",
+			"total_amount": 20912.81,
+			"group_index": "2019-08_9",
+			"mch_name": "张楠运营团队",
+			"bill_time_stamp": 1564617600000,
 			"sales_name": "张楠",
 			"bill_month": "2019-08-01",
-			"group_index": "2019-08_9",
-			"left_money": "0.00",
-			"mch_name": "张楠运营团队",
-			"recv_money": "1236.77"
+			"left_money": "0.00"
 		}, {
-			"receivable": "1823.25",
 			"pay_remark": "暂无",
-			"total_amount": 30488.68,
 			"order_count": 4548.0,
+			"recv_money": "1823.25",
+			"receivable": "1823.25",
+			"total_amount": 30488.68,
+			"group_index": "2019-09_9",
+			"mch_name": "张楠运营团队",
+			"bill_time_stamp": 1567296000000,
 			"sales_name": "张楠",
 			"bill_month": "2019-09-01",
-			"group_index": "2019-09_9",
-			"left_money": "0.00",
-			"mch_name": "张楠运营团队",
-			"recv_money": "1823.25"
+			"left_money": "0.00"
 		}, {
-			"receivable": "1838.45",
 			"pay_remark": "暂无",
-			"total_amount": 30701.88,
 			"order_count": 4183.0,
+			"recv_money": "1838.45",
+			"receivable": "1838.45",
+			"total_amount": 30701.88,
+			"group_index": "2019-10_9",
+			"mch_name": "张楠运营团队",
+			"bill_time_stamp": 1569888000000,
 			"sales_name": "张楠",
 			"bill_month": "2019-10-01",
-			"group_index": "2019-10_9",
-			"left_money": "0.00",
-			"mch_name": "张楠运营团队",
-			"recv_money": "1838.45"
+			"left_money": "0.00"
 		}, {
-			"receivable": "1722.94",
 			"pay_remark": "暂无",
-			"total_amount": 28715.7,
 			"order_count": 4377.0,
+			"recv_money": "1722.94",
+			"receivable": "1722.94",
+			"total_amount": 28715.7,
+			"group_index": "2019-11_9",
+			"mch_name": "张楠运营团队",
+			"bill_time_stamp": 1572566400000,
 			"sales_name": "张楠",
 			"bill_month": "2019-11-01",
-			"group_index": "2019-11_9",
-			"left_money": "0.00",
-			"mch_name": "张楠运营团队",
-			"recv_money": "1722.94"
+			"left_money": "0.00"
 		}, {
-			"receivable": "468.24",
 			"pay_remark": "暂无",
-			"total_amount": 7804.25,
-			"order_count": 1339.0,
+			"order_count": 1415.0,
+			"recv_money": "496.28",
+			"receivable": "496.17",
+			"total_amount": 8269.58,
+			"group_index": "2019-12_9",
+			"mch_name": "张楠运营团队",
+			"bill_time_stamp": 1575158400000,
 			"sales_name": "张楠",
 			"bill_month": "2019-12-01",
-			"group_index": "2019-12_9",
-			"left_money": "-0.11",
-			"mch_name": "张楠运营团队",
-			"recv_money": "468.35"
-		}]
+			"left_money": "-0.11"
+		}],
+		"total_left_money": 0.0,
+		"balance": 0.11
 	}
 }
 ```
@@ -137,6 +143,7 @@
 | ------------ | ------------ |------------ | ------------ | ------------ |
 | amount  | float |  |  入账金额 | 必填  |
 | recv_time  | string |  |  入账时间 | 必填  |
+| recv_time_stamp  | int |  |  入账毫秒时间戳 | 必填  |
 
 ```json
 {
@@ -145,25 +152,32 @@
 	"data": {
 		"resp_items": [{
 			"amount": 1236.77,
-			"recv_time": "2019-08-01"
+			"recv_time": "2019-08-01",
+			"recv_time_stamp": 1564617600000
 		}, {
 			"amount": 1823.25,
-			"recv_time": "2019-09-01"
+			"recv_time": "2019-09-01",
+			"recv_time_stamp": 1567296000000
 		}, {
 			"amount": 1838.45,
-			"recv_time": "2019-10-01"
+			"recv_time": "2019-10-01",
+			"recv_time_stamp": 1569888000000
 		}, {
 			"amount": 1722.94,
-			"recv_time": "2019-11-01"
+			"recv_time": "2019-11-01",
+			"recv_time_stamp": 1572566400000
 		}, {
-			"amount": 468.24,
-			"recv_time": "2019-12-01"
+			"amount": 496.17,
+			"recv_time": "2019-12-01",
+			"recv_time_stamp": 1575158400000
 		}, {
 			"amount": 0.1,
-			"recv_time": "2019-12-10"
+			"recv_time": "2019-12-10",
+			"recv_time_stamp": 1575995922000
 		}, {
 			"amount": 0.01,
-			"recv_time": "2019-12-10"
+			"recv_time": "2019-12-10",
+			"recv_time_stamp": 1576000370000
 		}]
 	}
 }
