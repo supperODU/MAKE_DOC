@@ -49,7 +49,7 @@
 | total_amount  | float |  |  月销售额| 必填  |
 | order_count  | float |  |  月订单数| 必填  |
 | bill_month  | float |  |  时间| 必填  |
-| bill_time_stamp  | float |  |  账单毫秒时间戳| 必填  |
+| bill_time_stamp  | int |  |  账单毫秒时间戳| 必填  |
 | left_money  | float |  |  月剩余应收款| 必填  |
 
 
