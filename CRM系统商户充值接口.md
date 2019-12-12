@@ -144,6 +144,7 @@
 | amount  | float |  |  入账金额 | 必填  |
 | recv_time  | string |  |  入账时间 | 必填  |
 | recv_time_stamp  | int |  |  入账毫秒时间戳 | 必填  |
+| pay_method  | string |  |  付款方式 | 必填  |
 
 ```json
 {
@@ -152,30 +153,37 @@
 	"data": {
 		"resp_items": [{
 			"amount": 1236.77,
+			"pay_method": "自动收款账号",
 			"recv_time": "2019-08-01",
 			"recv_time_stamp": 1564617600000
 		}, {
 			"amount": 1823.25,
+			"pay_method": "自动收款账号",
 			"recv_time": "2019-09-01",
 			"recv_time_stamp": 1567296000000
 		}, {
 			"amount": 1838.45,
+			"pay_method": "自动收款账号",
 			"recv_time": "2019-10-01",
 			"recv_time_stamp": 1569888000000
 		}, {
 			"amount": 1722.94,
+			"pay_method": "自动收款账号",
 			"recv_time": "2019-11-01",
 			"recv_time_stamp": 1572566400000
 		}, {
-			"amount": 496.17,
+			"amount": 510.55,
+			"pay_method": "自动收款账号",
 			"recv_time": "2019-12-01",
 			"recv_time_stamp": 1575158400000
 		}, {
 			"amount": 0.1,
+			"pay_method": "支付宝自助充值",
 			"recv_time": "2019-12-10",
 			"recv_time_stamp": 1575995922000
 		}, {
 			"amount": 0.01,
+			"pay_method": "支付宝自助充值",
 			"recv_time": "2019-12-10",
 			"recv_time_stamp": 1576000370000
 		}]
