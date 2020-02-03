@@ -38,6 +38,7 @@ def generate_sign(params, key):
 |  door_close_timestamp | int|  20  | 关门时间戳 精确到毫秒  | 必填  |
 |  top_video | string | 256  | 主摄像头视频链接地址   | 必填  |
 |  ass_video | string | 256  | 辅助摄像头视频链接地址   | 可选  |
+|  pre_result | string | 2047  | 预选模式下 预选结果   | 可选  |
 |  remark | string | 256  | 任务备注   | 可选  |
 |  customer_id | string | 64  | 消费者ID   | 可选  |
 |  goods_ids | string | 4000  | 格式见商品信息json, 一层最多不超过九种商品|  必填 |
