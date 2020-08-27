@@ -162,3 +162,28 @@
 	}
 }
 ```
+
+
+## 获取广告
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_one_ad/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"ad": {
+			"id": 6,
+			"pic_url": "42",
+			"link_url": "rwerwerwe",
+			"created_at": "2020-08-27 14:17:14",
+			"updated_at": "2020-08-27 14:17:14"
+		}
+	}
+}
+```
