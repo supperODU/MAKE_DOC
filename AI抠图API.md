@@ -116,3 +116,49 @@
 	}
 }
 ```
+
+
+## 通过手机号查询信用额度
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_left_credit_by_phone/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| phone  | string | 32 |  用户手机号 | 必填  |
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"credit": 4
+	}
+}
+```
+
+
+## 通过唯一ID查询信用额度
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_left_credit_by_unikey/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| unikey  | string | 128 |  用户唯一ID | 必填  |
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"credit": 4
+	}
+}
+```
