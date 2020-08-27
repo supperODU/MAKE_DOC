@@ -1,5 +1,5 @@
 # AI抠图API
-域名: https://api.aipic.vip
+域名: https://aipic.lufff.com
 
 ## 验证码
 - 请求方式：POST JSON
@@ -76,6 +76,43 @@
 	"msg": "",
 	"data": {
 		"rm_bg_pic_url": "http://make-cv.oss-cn-hangzhou.aliyuncs.com/MKCV1598349370338.png"
+	}
+}
+```
+
+
+## 抠图历史记录
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_rm_bg_list/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| customer_id  | string | 11 |  登陆返回用户ID | 必填  |
+|  token | string|  64  | 登陆返回token|  必填 |
+|  page | int |11  | 分页ID， 从1开始  |  必填 |
+|  size | int |11  | 分页大小  |  必填 |
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"list": [{
+			"id": 1,
+			"customer_id": 100001,
+			"remark": null,
+			"img_url": "https://xiaomaibox.oss-cn-shanghai.aliyuncs.com/1597976210945_32039_tmp_3235fa8891892248c7db909c4b3bea23e1bb22b6d2281015.jpg",
+			"rmbg_img_url": "http://make-cv.oss-cn-hangzhou.aliyuncs.com/MKCV1598349370338.png",
+			"created_at": "2020-08-25 17:56:10",
+			"updated_at": "2020-08-25 17:56:10"
+		}],
+		"page": 1,
+		"size": 1,
+		"total_count": 1
 	}
 }
 ```
