@@ -211,3 +211,34 @@
 	}
 }
 ```
+
+## 获取广告列表
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_ad_list/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"list": [{
+			"id": 6,
+			"pic_url": "https://xiaomaibox.oss-cn-shanghai.aliyuncs.com/1/default_01%402x.png",
+			"link_url": "rwerwerwe",
+			"created_at": "2020-08-27 14:17:14",
+			"updated_at": "2020-08-31 09:40:19"
+		}, {
+			"id": 7,
+			"pic_url": "https://xiaomaibox.oss-cn-shanghai.aliyuncs.com/1/default_01%401x.png",
+			"link_url": "321",
+			"created_at": "2020-08-31 09:40:33",
+			"updated_at": "2020-08-31 09:40:35"
+		}],
+		"total_count": 2
+	}
+}
+```
