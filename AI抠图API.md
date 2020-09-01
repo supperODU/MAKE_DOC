@@ -66,6 +66,11 @@
 | customer_id  | string | 11 |  登陆返回用户ID | 必填  |
 |  token | string|  64  | 登陆返回token|  必填 |
 |  img_url | string |128  | 图片url  |  必填 |
+|  pic_type | string |128  | 图像处理类型  |  选填 |
+
+
+图像处理类型 pic_type 介绍
+
 
 
 返回示例
@@ -90,6 +95,7 @@
 | ------------ | ------------ |------------ | ------------ | ------------ |
 |  unikey | string|  128  | 唯一ID|  必填 |
 |  img_url | string |128  | 图片url  |  必填 |
+|  pic_type | string |128  | 图像处理类型  |  选填 |
 
 
 返回示例
