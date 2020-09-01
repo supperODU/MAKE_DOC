@@ -83,7 +83,7 @@
 
 ## UNIKEY抠图接口
 - 请求方式：POST JSON
-- URL：/make_pic/api/rm_pic_bg_with_uuid/
+- URL：/make_pic/api/rm_pic_bg_with_unikey/
 - HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
 
 |  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
