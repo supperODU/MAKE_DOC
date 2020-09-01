@@ -68,11 +68,6 @@
 |  img_url | string |128  | 图片url  |  必填 |
 |  pic_type | string |128  | 图像处理类型  |  选填 |
 
-
-图像处理类型 pic_type 介绍
-
-
-
 返回示例
 
 ```json
@@ -84,6 +79,13 @@
 	}
 }
 ```
+
+### 图像处理类型 pic_type 介绍:
+-  general_picup 通用抠图，默认值
+- human_picup 人像抠图
+- object_picup 物体抠图
+- head_picup 头像抠图
+- beautify 图片美化
 
 
 ## UNIKEY抠图接口
