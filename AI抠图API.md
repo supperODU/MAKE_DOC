@@ -81,10 +81,10 @@
 ```
 
 ### 图像处理类型 pic_type 介绍:
--  general_picup 通用抠图，默认值
-- human_picup 人像抠图
-- object_picup 物体抠图
-- head_picup 头像抠图
+-  general 通用抠图，默认值
+- human 人像抠图
+- object 物体抠图
+- head 头像抠图
 - beautify 图片美化
 
 
