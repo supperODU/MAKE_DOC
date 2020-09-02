@@ -67,6 +67,26 @@
 |  token | string|  64  | 登陆返回token|  必填 |
 |  img_url | string |128  | 图片url  |  必填 |
 |  pic_type | string |128  | 图像处理类型  |  选填 |
+|  rectangles | string |256  | 修复区域  |  pic_type为img_fix时必填 |
+
+rectangles json示例
+
+```json
+[ //矩形区域, 支持多个数组
+    {
+      "height": 100,
+      "width": 100,
+      "x": 160,
+      "y": 280
+    },
+    {
+      "height": 100,
+      "width": 100,
+      "x": 560,
+      "y": 680
+    },
+  ]
+```
 
 返回示例
 
@@ -86,6 +106,7 @@
 - object 物体抠图
 - head 头像抠图
 - beautify 图片美化
+- img_fix 图片修复，此时rectangles为必填
 
 
 ## UNIKEY抠图接口
@@ -98,6 +119,7 @@
 |  unikey | string|  128  | 唯一ID|  必填 |
 |  img_url | string |128  | 图片url  |  必填 |
 |  pic_type | string |128  | 图像处理类型  |  选填 |
+|  rectangles | string |256  | 修复区域  |  pic_type为img_fix时必填 |
 
 
 返回示例
