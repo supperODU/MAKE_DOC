@@ -32,7 +32,7 @@
 | ------------ | ------------ |------------ | ------------ | ------------ |
 | phone  | string | 32 |  手机号 | 必填  |
 |  vcode | string|  4  | 验证码 |  必填 |
-
+| share_id | string|  4  | 分享码 |  选填 |
 
 
 返回示例，记录ID,以及token
@@ -52,6 +52,39 @@
 		"created_at": "2020-08-25 17:41:12",
 		"updated_at": "2020-08-25 17:41:12",
 		"token": "ed892151-a286-493b-b517-ba72668e5fac"
+	}
+}
+```
+
+## unikey登陆接口
+- 请求方式：POST JSON
+- URL：/make_pic/api/login_with_unikey/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| unikey  | string | 128 |  唯一ID | 必填  |
+| share_id | string|  4  | 分享码 |  选填 |
+
+
+
+返回示例，记录ID,以及token
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"id": 100013,
+		"unikey": "6931231232132177",
+		"nickname": null,
+		"phone": null,
+		"password": null,
+		"credit": 20,
+		"invite_code": "hfjl",
+		"created_at": null,
+		"updated_at": null,
+		"token": "7ee3d6c5-e34b-48ab-a6c1-6921f8e1ac28"
 	}
 }
 ```
@@ -101,12 +134,13 @@ rectangles json示例
 ```
 
 ### 图像处理类型 pic_type 介绍:
--  general 通用抠图，默认值
+- general 通用抠图，默认值
 - human 人像抠图
 - object 物体抠图
 - head 头像抠图
 - beautify 图片美化
 - img_fix 图片修复，此时rectangles为必填
+
 
 
 ## UNIKEY抠图接口
