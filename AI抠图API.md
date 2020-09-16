@@ -306,3 +306,29 @@ rectangles json示例
 	}
 }
 ```
+
+
+## UNIKEY证件照生成接口
+- 请求方式：POST JSON
+- URL：/make_pic/api/certificate_photo_with_unikey/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+|  unikey | string|  128  | 唯一ID|  必填 |
+|  img_url | string |128  | 图片url  |  必填 |
+|  bgColor | string |128  | 背景色  |  必填 |
+|  rectangles | string |256  | 修复区域  |  pic_type为img_fix时必填 |
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"rm_bg_pic_url": "http://make-cv.oss-cn-hangzhou.aliyuncs.com/MKCV1598349370338.png"
+	}
+}
+```
