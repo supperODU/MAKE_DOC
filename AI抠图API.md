@@ -318,7 +318,12 @@ rectangles json示例
 |  unikey | string|  128  | 唯一ID|  必填 |
 |  img_url | string |128  | 图片url  |  必填 |
 |  bgColor | string |128  | 背景色  |  必填 |
-|  rectangles | string |256  | 修复区域  |  pic_type为img_fix时必填 |
+|  dpi | int |11  | 一般300  |  必填 |
+|  mmHeight | int |11  | 图片高  |  必填 |
+|  mmWidth | int |11  | 图片宽  |  必填 |
+|  printBgColor | string |128  | 打印背景色  |  必填 |
+|  printMmHeight | int |11  | 打印高度 毫米  |  必填 |
+|  printMmWidth | int |11  | 打印宽 毫米  |  必填 |
 
 
 返回示例
@@ -328,7 +333,8 @@ rectangles json示例
 	"status": 0,
 	"msg": "",
 	"data": {
-		"rm_bg_pic_url": "http://make-cv.oss-cn-hangzhou.aliyuncs.com/MKCV1598349370338.png"
+		"cer_img_url": "http://make-cv.oss-cn-hangzhou.aliyuncs.com/MKCV1598349370338.png",    
+		"layout_img_url": "http://make-cv.oss-cn-hangzhou.aliyuncs.com/MKCV1598349370338.png", # 打印图片
 	}
 }
 ```
