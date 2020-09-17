@@ -338,3 +338,76 @@ rectangles json示例
 	}
 }
 ```
+
+## 查询 签到增加次数
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_sign_in_reward/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"sign_in_reward": 2
+	}
+}
+```
+
+## 签到
+- 请求方式：POST JSON
+- URL：/make_pic/api/customer_sign_in/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| customer_id  | string | 11 |  登陆返回用户ID | 必填  |
+|  token | string|  64  | 登陆返回token|  必填 |
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"credit": 22
+	}
+}
+```
+
+## 签到历史
+- 请求方式：POST JSON
+- URL：/make_pic/api/get_customer_sign_in_list/
+- HEADER: {'Content-type': 'application/json', 'Accept': 'text/plain'}
+
+|  参数名称 | 类型 | 长度限制  | 简介  | 备注  |
+| ------------ | ------------ |------------ | ------------ | ------------ |
+| customer_id  | string | 11 |  登陆返回用户ID | 必填  |
+|  token | string|  64  | 登陆返回token|  必填 |
+
+返回示例
+
+```json
+{
+	"status": 0,
+	"msg": "",
+	"data": {
+		"list": [{
+			"id": 3,
+			"customer_id": 100018,
+			"credit": 2,
+			"remark": null,
+			"created_at": "2020-09-17 17:24:03",
+			"updated_at": "2020-09-17 17:24:03"
+		}],
+		"total_count": 1
+	}
+}
+```
