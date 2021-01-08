@@ -288,42 +288,6 @@ http://47.92.245.190/recognition/api/query/goods/?companyId=666666&goods_name=%E
 }
 ```
 
-## 云库商品创建接口
-- 请求方式：POST
-- URL：/recognition/api/create/goods/
-- URL：对接方提供
-
-|  参数名称 | 类型  | 长度限制 | 简介  | 备注  |
-| ------------ | ------------ | ------------ | ------------ | ------------ |
-| companyId  | int | 11 |  同app_id 请在对接前申请 | 必填  |
-|  recognize_type | int | 11  | 识别类型 0：未知，1RFID，2大图少样本，3小图大样本 |  必填 |
-|  goods_name | string | 64  | 商品名称  |  必填 |
-|  price | FLOAT |   | 商品价格 |  必填 |
-|  sign | string | 64 | 签名，生成方法和下单一致|  必填 |
-|  main_image | string | 256 | 主图地址|  选填 |
-|  images | string | 2048 | 附图地址列表，用英文逗号隔开|  选填 |
-|  pinyin | string | 64 | 拼音|  选填 |
-|  barcode | string | 255 | 条码|  选填 |
-|  specifications | string | 255 | 规格|  选填 |
-|  length | int | 11 | 长|  选填 |
-|  width | int | 11 | 宽|  选填 |
-|  height | int | 11 | 高|  选填 |
-|  avg_weight | int | 11 | 平均重量|  选填 |
-|  weight_error | int | 11 | 重量误差|  选填 |
-|  min_weight | int | 11 | 最小重量|  选填 |
-|  max_weight | int | 11 | 最大重量|  选填 |
-
-正确返回示例：
-```json
-{
-	"msg": "",
-	"status": 0,
-	"data": {
-		"id": 110116 # 创建成功后，云库商品ID
-	}
-}
-```
-
 
 ## 错误码介绍
 | 错误信息  | 含义  |
