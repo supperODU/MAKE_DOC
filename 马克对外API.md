@@ -41,7 +41,7 @@ def generate_sign(params, key):
 |  pre_result | string | 2047  | 预选模式下 预选结果   | 可选  |
 |  remark | string | 256  | 任务备注   | 可选  |
 |  customer_id | string | 64  | 消费者ID   | 可选  |
-|  goods_ids | string | 4000  | 格式见商品信息json, 一层最多不超过九种商品|  必填 |
+|  goods_info | string | 4000  | 格式见商品信息json, 一层最多不超过九种商品|  必填 |
 |  weight_info | string | 512  | 重力信息，包含层以及重量变化   | 可选  |
 |  request_time | int | 20  | 请求时间戳 精确到毫秒   |  必填 |
 |  notify_url | string | 128  | 识别结果回调地址  | 必填 | 
