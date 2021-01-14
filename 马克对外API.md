@@ -119,16 +119,12 @@ def generate_sign(params, key):
 
 ```json
 {
-	"status": 1,
-	"reco_result": {
-		"17": 4,
-		"16": 3
-	},
-	"task_id": 1679277852554428416,
-	"extra": "\u54c8\u54c8\u54c8",
-	"app_id": 666666,
-	"sign": "F9FAAA2592DADD29468A3E99F0F7A813",
-	"unique_id": "1563949371285"
+	"eventId": 21972837, 
+	"requestSerial": 30501296,
+	"userId": 3748486,
+	"deviceId": 20311,
+	"soGoodsIdList": ["11250"], 
+	"soGoodsNumList": ["1"]
 }
 ```
 
